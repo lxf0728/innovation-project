@@ -18,12 +18,10 @@ def out_hex(list1):
     for i in list1:
         print("%08x" % i)
     print("\n")
-
 #左移
 def rotate_left(a, k):
     k = k % 32
     return ((a << k) & 0xFFFFFFFF) | ((a & 0xFFFFFFFF) >> (32 - k))
-
 #初始化
 T_j = []
 for i in range(0, 16):
@@ -32,7 +30,6 @@ for i in range(0, 16):
 for i in range(16, 64):
     T_j.append(0)
     T_j[i] = 0x7a879d8a
-
 #布尔函数
 def FF_j(X, Y, Z, j):
     if 0 <= j and j < 16:
@@ -40,7 +37,6 @@ def FF_j(X, Y, Z, j):
     elif 16 <= j and j < 64:
         ret = (X & Y) | (X & Z) | (Y & Z)
     return ret
-
 #布尔函数
 def GG_j(X, Y, Z, j):
     if 0 <= j and j < 16:
@@ -48,14 +44,10 @@ def GG_j(X, Y, Z, j):
     elif 16 <= j and j < 64:
         ret = (X & Y) | ((~ X) & Z)
     return ret
-
 def P_0(X):
     return X ^ (rotate_left(X, 9)) ^ (rotate_left(X, 17))
-
 def P_1(X):
     return X ^ (rotate_left(X, 15)) ^ (rotate_left(X, 23))
-    
-
 def str2byte(msg):
     ml = len(msg)
     msg_byte = []
@@ -63,16 +55,14 @@ def str2byte(msg):
     for i in range(ml):
         msg_byte.append(msg_bytearray[i])
     return msg_byte
-
-# byte数组转字符串
+#byte数组转字符串
 def byte2str(msg):
     ml = len(msg)
     str1 = b""
     for i in range(ml):
         str1 += b'%c' % msg[i]
     return str1.decode('utf-8')
-
-# 16进制字符串转换成byte数组
+#16进制字符串转换成byte数组
 def hex2byte(msg):
     ml = len(msg)
     if ml % 2 != 0:
@@ -82,8 +72,7 @@ def hex2byte(msg):
     for i in range(ml):
         msg_byte.append(int(msg[i*2:i*2+2],16))
     return msg_byte
-
-# byte数组转换成16进制字符串
+#byte数组转换成16进制字符串
 def byte2hex(msg):
     ml = len(msg)
     hexstr = ""
@@ -105,7 +94,6 @@ def byte2hex(msg):
 <td>
 <pre>
 <code>
-#迭代压缩
 def CF(V_i, B_i):
     W = []
     for i in range(16):
@@ -115,7 +103,6 @@ def CF(V_i, B_i):
             data = data + B_i[k]*weight
             weight = int(weight/0x100)
         W.append(data)
-
     for j in range(16, 68):
         W.append(0)
         W[j] = P_1(W[j-16] ^ W[j-9] ^ (rotate_left(W[j-3], 15))) ^ (rotate_left(W[j-13], 7)) ^ W[j-6]
@@ -125,9 +112,7 @@ def CF(V_i, B_i):
         W_1.append(0)
         W_1[j] = W[j] ^ W[j+4]
         str1 = "%08x" % W_1[j]
-
     A, B, C, D, E, F, G, H = V_i
-
     for j in range(0, 64):
         SS1 = rotate_left(((rotate_left(A, 12)) + E + (rotate_left(T_j[j], j))) & 0xFFFFFFFF, 7)
         SS2 = SS1 ^ (rotate_left(A, 12))
@@ -141,7 +126,6 @@ def CF(V_i, B_i):
         G = rotate_left(F, 19)
         F = E
         E = P_0(TT2)
-
         A = A & 0xFFFFFFFF
         B = B & 0xFFFFFFFF
         C = C & 0xFFFFFFFF
@@ -150,7 +134,6 @@ def CF(V_i, B_i):
         F = F & 0xFFFFFFFF
         G = G & 0xFFFFFFFF
         H = H & 0xFFFFFFFF
-
     V_i_1 = []
     V_i_1.append(A ^ V_i[0])
     V_i_1.append(B ^ V_i[1])
@@ -171,7 +154,7 @@ def CF(V_i, B_i):
 <div align=center>
 <table>
 <tr>
-<th>hash运算函数/th>
+<th>hash运算函数</th>
 <td>
 <pre>
 <code>
@@ -183,10 +166,8 @@ def hash_msg(msg):
     range_end = 56
     if reserve1 > range_end:
         range_end = range_end + 64
-
     for i in range(reserve1, range_end):
         msg.append(0x00)
-
     bit_length = (len1) * 8
     bit_length_str = [bit_length % 0x100]
     for i in range(7):
@@ -194,18 +175,14 @@ def hash_msg(msg):
         bit_length_str.append(bit_length % 0x100)
     for i in range(8):
         msg.append(bit_length_str[7-i])
-
     group_count = round(len(msg) / 64)
-
     B = []
     for i in range(0, group_count):
         B.append(msg[i*64:(i+1)*64])
-
     V = []
     V.append(IV)
     for i in range(0, group_count):
         V.append(CF(V[i], B[i]))
-
     y = V[i+1]
     result = ""
     for i in y:
@@ -219,11 +196,14 @@ def hash_msg(msg):
 </div>
 
 ## 运行截图
+测试优化结果选择了100000个随机生成的数据:
+<div align=center><img width="463" alt="image" src="https://user-images.githubusercontent.com/109843978/181235389-38200364-edb1-4e1d-9d68-9a06de701233.png"></div>
+测试结果：
 <div align=center><img width="415" alt="image" src="https://user-images.githubusercontent.com/109843978/181228518-fe9e6956-b8f6-4df2-8396-9ff5b2f3608c.png"></div>
-
+由结果可知，代码产生100000个散列值需要约**30**秒.
 
 # 运行指导
-
+代码可直接运行.
 
 
 
