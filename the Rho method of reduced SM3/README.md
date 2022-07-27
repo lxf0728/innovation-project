@@ -1,7 +1,7 @@
-<h1 align="center">birthday attack of reduced SM3</h1>
+<h1 align="center">the Rho method of reduced SM3</h1>
 
 # 项目原理
-<div align=center><img width="574" alt="image" src="https://user-images.githubusercontent.com/109843978/181145558-430857d8-3140-413e-b835-17f514dbf363.png"></div>
+<div align=center><img width="500" alt="image" src="https://user-images.githubusercontent.com/109843978/181147716-b084efdf-e293-4229-9212-9c77a3e8e05d.png"></div>
 
 
 
@@ -9,33 +9,26 @@
 # 代码说明与运行截图
 
 ## 代码说明
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/109843978/181147944-09f72d01-c607-4b35-97e8-4fb30ed43978.png">
 
-生成指定数量随机数的列表：<div align=center><img width="599" alt="image" src="https://user-images.githubusercontent.com/109843978/181145647-540022ed-65a0-4352-b325-d31d1aa56e12.png"></div>
 
+<div align=center><img width="276" alt="image" src="https://user-images.githubusercontent.com/109843978/181148009-754efb1d-8d2d-4328-bbdf-077627e41ae6.png"></div>
+<img width="302" alt="image" src="https://user-images.githubusercontent.com/109843978/181148146-dd87c0da-c4a3-4db2-b6fa-e2a031c146ac.png">
 
-生成两个随机数列表，然后对第一个列表的元素进行sm3哈希，然后对第二个进行哈希时，判断散列值是否在第一个散列值列表中出现，如果有就找了碰撞:<div align=center><img width="429" alt="image" src="https://user-images.githubusercontent.com/109843978/181145729-f7ea3bcf-466e-42b6-8e14-4f46988b9b10.png"></div>
+<div align=center><img width="379" alt="image" src="https://user-images.githubusercontent.com/109843978/181148080-cceb6665-b537-4eb2-ade1-dcf0ec3972ac.png"></div>
+<img width="304" alt="image" src="https://user-images.githubusercontent.com/109843978/181148176-22c8350c-2905-476a-b92e-26b755754be7.png">
+
+<div align=center><img width="591" alt="image" src="https://user-images.githubusercontent.com/109843978/181148098-bf836af2-7c13-455b-b01a-e1c9c519abda.png"></div> 
+
 
 
 ## 运行截图
 
 设置了**32位**碰撞以后，运行代码，找到了**32位**的碰撞，碰撞的输入对是如下图：
 
-<div align=center><img width="524" alt="image" src="https://user-images.githubusercontent.com/109843978/181146409-52c82ef5-a5f8-49e8-9c36-35288a9bec35.png"></div>
+<div align=center><img width="432" alt="image" src="https://user-images.githubusercontent.com/109843978/181148463-48c233b5-aa4f-46cd-b6f7-41bc8a74f6e9.png"></div>
 
-## 测试结果：
-
-以上图第一对作为测试对象：
-
-<div align=center><img width="515" alt="image" src="https://user-images.githubusercontent.com/109843978/181146488-eaa1afcc-0d45-46f5-bcc8-0abe65bde312.png">
-</div>
-
-测试结果(输出结果为16进制)：
-<div align=center><img width="588" alt="image" src="https://user-images.githubusercontent.com/109843978/181146535-cf0d0a21-486a-4433-891a-85ef6da780ca.png">
-</div>
-
-可以看到前32位是一样的
-
-
+如图可知出现了40位的碰撞.
 
 # 运行指导
 
