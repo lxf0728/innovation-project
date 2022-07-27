@@ -1,4 +1,4 @@
-<h1 align="center">the Rho method of reduced SM3</h1>
+<h1 align="center">optimize SM3 implementation</h1>
 
 # 项目原理
 <div align=center><img width="620" alt="image" src="https://user-images.githubusercontent.com/109843978/181232230-a58123f7-8703-484d-ad31-ad9a3d652105.png"></div>
