@@ -39,8 +39,6 @@ def verification(m,tree):
             path.append([tree[d][node-1], tree[d][node]])
         node = int(node/2)
     path.append([tree[-1][0]])
-    if hash != path[0][0] and hash != path[0][1] and path[-1][0] != tree[-1][0]:
-        return False
     depth = len(path)
     for i in range(0, depth - 1):
         node = (hashlib.sha256(path[i][0].encode() + path[i][1].encode())).hexdigest()
