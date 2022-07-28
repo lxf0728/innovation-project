@@ -243,7 +243,7 @@ e = SM3.getstr(LEN)
 d = SM3.getstr(LEN)
 k = SM3.getstr(LEN)
 
-#验证加密算法
+#验证签名算法
 pa = kp(SM3.INT_16(d), G,LEN)
 sig = sign(e,d,k,LEN,1)
 print(verify(sig,e,pa,LEN))
