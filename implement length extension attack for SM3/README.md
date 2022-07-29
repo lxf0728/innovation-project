@@ -1,4 +1,4 @@
-<h1 align="center">the Rho method of reduced SM3</h1>
+<h1 align="center">implement length extension attack for SM3</h1>
 
 # 项目原理
 <div align=center><img width="500" alt="image" src="https://user-images.githubusercontent.com/109843978/181150732-0bde1a2a-5d0c-46af-9091-51a6e393fb80.png"></div>
