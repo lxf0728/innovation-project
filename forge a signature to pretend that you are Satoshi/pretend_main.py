@@ -66,10 +66,10 @@ def verify(a,p,r,s,n,h,K,G):
     n2 = nG(K[0],K[1],u2,a,p)
     n1_n2 = G_(n1[0],n1[1],n2[0],n2[1],a,p)
     if  n1_n2[0]%n==r:
-        '验证成功'
+        #'验证成功'
         return True
     else:
-        '验证失败'
+        #'验证失败'
         return False
 
 #伪造攻击
