@@ -61,11 +61,14 @@ def A(G,x):
     e = hash(str(R[0])+str(R[1]))%10
     s = r+e*x
     return (s,X,R)
+
 def B(s,X,R,G):
     e = hash(str(R[0])+str(R[1]))%10
     sG = nG(G[0],G[1],s,4,29)
     eX = nG(X[0],X[1],e,4,29)
     R_eX = G_(eX[0],eX[1],R[0],R[1],4,29)
+    print('sG',sG)
+    print('R_eX',R_eX)
     if sG==R_eX:
         print('成功验证')
         return True
