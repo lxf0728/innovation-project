@@ -17,19 +17,14 @@ Schnorr协议本质上是一种零知识的技术，即证明方(Prover)声称�
 <td>
 <pre>
 <code>
-def verify(a,p,r,s,n,h,K,G):
-    s_1 = inverse(s,n)
-    u1 = (s_1*h)%n
-    u2 = (s_1*r)%n
-    n1 = nG(G[0],G[1],u1,a,p)
-    n2 = nG(K[0],K[1],u2,a,p)
-    n1_n2 = G_(n1[0],n1[1],n2[0],n2[1],a,p)
-    if  n1_n2[0]%n==r:
-        #'验证成功'
-        return True
-    else:
-        #'验证失败'
-        return False
+def A(G,x):
+    #r = random.randint(1,50)
+    r=11
+    R = nG(G[0],G[1],r,4,29)
+    X = nG(G[0],G[1],x,4,29)
+    e = hash(str(R[0])+str(R[1]))%10
+    s = r+e*x
+    return (s,X,R)
 </code>
 </pre>
 </td>
@@ -40,22 +35,22 @@ def verify(a,p,r,s,n,h,K,G):
 <div align=center>
 <table>
 <tr>
-<th>伪造攻击函数</th>
+<th>B</th>
 <td>
 <pre>
 <code>
-def forge_attack(n,K,G,a,p):
-    #这里是去伪造一个签名
-    u = random.randint(1,n-1)
-    v = random.randint(1,n-1)
-    r_ = G_(nG(G[0],G[1],u,a,p)[0],nG(G[0],G[1],u,a,p)[1],nG(K[0],K[1],v,a,p)[0],nG(K[0],K[1],v,a,p)[1],a,p)[0]
-    e = (r_*u*inverse(v,n))%n
-    s = (r_*inverse(v,n))%n
-    if verify(a,p,r_%n,s,n,e,K,G) == True:
-        print('Successfully forged')
-        print('伪造的签名和明文为',(r_,s),e)
+def B(s,X,R,G):
+    e = hash(str(R[0])+str(R[1]))%10
+    sG = nG(G[0],G[1],s,4,29)
+    eX = nG(X[0],X[1],e,4,29)
+    R_eX = G_(eX[0],eX[1],R[0],R[1],4,29)
+    print('sG',sG)
+    print('R_eX',R_eX)
+    if sG==R_eX:
+        print('成功验证')
+        return True
     else:
-        print('Unsuccessfully forged')
+        return False
 </code>
 </pre>
 </td>
@@ -65,11 +60,13 @@ def forge_attack(n,K,G,a,p):
 
 ## 运行截图
 
-给定默认的原始信息和附加信息，检验攻击是否成功：
-<div align=center><img width="456" alt="image" src="https://user-images.githubusercontent.com/109843978/181903198-ad0d5598-f544-4eba-94b6-44279cf061c9.png"></div>
+测试代码:
+<div align=center><img width="230" alt="image" src="https://user-images.githubusercontent.com/109843978/181935817-98e3624e-f7bd-4128-a44b-1e38c869d29f.png">
+</div>
 运行结果:
-<div align=center><img width="253" alt="image" src="https://user-images.githubusercontent.com/109843978/181903202-304731e5-cb7e-4f66-8c0c-18cb432284d6.png"></div>
-由打印的内容可知，可以完成攻击.
+<div align=center><img width="181" alt="image" src="https://user-images.githubusercontent.com/109843978/181935826-300e7c65-3fb4-4369-8c70-505ad1133fd0.png">
+</div>
+证明完毕.
 
 # 运行指导
 代码可直接运行.
