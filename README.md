@@ -27,6 +27,20 @@ project10: Zero knowledge proof_验证六级成绩
 
 project11: Implement a PGP scheme with SM2
 
-其余项目未完成.
+未完成项目：
+Project1: Try to Implement this scheme
+
+Project2: Implement the above ECMH scheme
+
+Project3: implement sm2 2P sign with real network communication
+
+Project4: implement sm2 2P decrypt with real network communication
+
+Project5: PoC impl of the scheme, or do implement analysis by Google
+
+Project6: send a tx on Bitcoin testnet, and parse the tx data down to every bit, better write script yourself
+
+Project7: verify the above pitfalls with proof-of-concept code
+
 
 代码的运行指导、截图以及具体说明均为每个项目文件中给出.
