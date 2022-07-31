@@ -25,6 +25,8 @@ project9：research report on MPT
 
 project10: Zero knowledge proof_验证六级成绩
 
+project11: Implement a PGP scheme with SM2
+
 其余项目未完成.
 
 代码的运行指导、截图以及具体说明均为每个项目文件中给出.
