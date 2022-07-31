@@ -67,11 +67,16 @@ def pk_attack(G,x,y,a,p,n,h):
 string = input('请输入一个字符串作为要加密的明文')
 h=hash(string)
 print('hash:',h)
+
+#默认字符串
+h=hash('ss')
 #设置初始参数
 G=(2,6)
 a,b,p=4,20,29
 n=37
-d=input('请输入一个数字作为私钥(可以以5、7、8作为例子)')
+#d=input('请输入一个数字作为私钥(可以以5、7、8作为例子)')
+#默认d
+d=5
 #随机生成k
 k = random.randint(1,n-1)
 r,s = sign(a,b,p,G,n,h,int(d),k)[0],sign(a,b,p,G,n,h,int(d),k)[1]
