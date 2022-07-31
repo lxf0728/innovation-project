@@ -34,5 +34,6 @@ for i in num2:
         OUT_number_1.append(num1[OUT1.index(outcome)])
         OUT_number_2.append(i)
 #打印出两个数据集合产生碰撞的结果
+print('打印碰撞结果:(两个列表 对应位置值为产生碰撞的消息对)')
 print(OUT_number_1)
 print(OUT_number_2)
