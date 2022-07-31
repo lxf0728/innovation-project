@@ -1,4 +1,4 @@
-<h1 align="center">birthday attack of reduced SM3</h1>
+<h1 align="center">Implement a PGP scheme with SM2</h1>
 
 # 项目原理
 <div align=center><img width="478" alt="image" src="https://user-images.githubusercontent.com/109843978/182007692-11704fc7-1824-4dd2-8162-31e7f6d266e2.png"></div>
