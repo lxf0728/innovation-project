@@ -44,4 +44,4 @@ Project6: send a tx on Bitcoin testnet, and parse the tx data down to every bit,
 Project7: verify the above pitfalls with proof-of-concept code
 
 
-代码的运行指导、截图以及具体说明均为每个项目文件中给出.
+代码的运行指导、截图以及具体说明均在每个项目文件中给出.
